@@ -1,19 +1,18 @@
 class CreateSections < ActiveRecord::Migration
-  def up
+  def change
     create_table :sections do |t|
+      # Foreign key
+      t.integer "page_id"
       t.string :name, null: false
       t.integer :position, null: false
-      t.boolean :visible, default: true, null: false
+      t.boolean :visible, default: false, null: false
       t.string :content_type, null: false
       t.text :content
 
       t.timestamps null: false
     end
-    add_foreign_key :pages, :sections
-    add_foreign_key :subjects, :sections
+    # Index for foreign key
+    add_index :sections, "page_id"
   end
 
-  def down
-    drop_table :sections
-  end
 end

@@ -3,9 +3,7 @@ class CreateSubjects < ActiveRecord::Migration
       create_table :subjects do |t|
       t.string :name, null: false
       t.integer :position, null: false
-      t.boolean :visible, default: true, null: false
-      t.integer :page_id, limit: 11
-      t.integer :section_id, limit: 11
+      t.boolean :visible, default: false, null: false
 
       t.timestamps null: false
     end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525200206) do
+ActiveRecord::Schema.define(version: 20160529033729) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "first_name",      limit: 25
@@ -25,42 +25,55 @@ ActiveRecord::Schema.define(version: 20160525200206) do
 
   add_index "admin_users", ["username"], name: "index_admin_users_on_username", using: :btree
 
-  create_table "pages", force: :cascade do |t|
-    t.string   "name",       limit: 255,                null: false
-    t.string   "permalink",  limit: 255,                null: false
-    t.integer  "position",   limit: 4,                  null: false
-    t.boolean  "visible",                default: true
-    t.integer  "section_id", limit: 4
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+  create_table "admin_users_pages", id: false, force: :cascade do |t|
+    t.integer "admin_user_id", limit: 4
+    t.integer "page_id",       limit: 4
   end
 
-  add_index "pages", ["section_id"], name: "fk_rails_dcf3b9118d", using: :btree
+  add_index "admin_users_pages", ["admin_user_id", "page_id"], name: "index_admin_users_pages_on_admin_user_id_and_page_id", using: :btree
+
+  create_table "pages", force: :cascade do |t|
+    t.integer  "subject_id", limit: 4
+    t.string   "name",       limit: 255,                 null: false
+    t.string   "permalink",  limit: 255,                 null: false
+    t.integer  "position",   limit: 4,                   null: false
+    t.boolean  "visible",                default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "pages", ["permalink"], name: "index_pages_on_permalink", using: :btree
+  add_index "pages", ["subject_id"], name: "index_pages_on_subject_id", using: :btree
+
+  create_table "section_edits", force: :cascade do |t|
+    t.integer  "admin_user_id", limit: 4
+    t.integer  "section_id",    limit: 4
+    t.string   "summary",       limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "section_edits", ["admin_user_id", "section_id"], name: "index_section_edits_on_admin_user_id_and_section_id", using: :btree
 
   create_table "sections", force: :cascade do |t|
-    t.string   "name",         limit: 255,                  null: false
-    t.integer  "position",     limit: 4,                    null: false
-    t.boolean  "visible",                    default: true, null: false
-    t.string   "content_type", limit: 255,                  null: false
+    t.integer  "page_id",      limit: 4
+    t.string   "name",         limit: 255,                   null: false
+    t.integer  "position",     limit: 4,                     null: false
+    t.boolean  "visible",                    default: false, null: false
+    t.string   "content_type", limit: 255,                   null: false
     t.text     "content",      limit: 65535
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
   end
+
+  add_index "sections", ["page_id"], name: "index_sections_on_page_id", using: :btree
 
   create_table "subjects", force: :cascade do |t|
-    t.string   "name",       limit: 255,                null: false
-    t.integer  "position",   limit: 4,                  null: false
-    t.boolean  "visible",                default: true, null: false
-    t.integer  "page_id",    limit: 4
-    t.integer  "section_id", limit: 4
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.string   "name",       limit: 255,                 null: false
+    t.integer  "position",   limit: 4,                   null: false
+    t.boolean  "visible",                default: false, null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
-  add_index "subjects", ["page_id"], name: "fk_rails_c32c0e6f2a", using: :btree
-  add_index "subjects", ["section_id"], name: "fk_rails_58b038b7fb", using: :btree
-
-  add_foreign_key "pages", "sections"
-  add_foreign_key "subjects", "pages"
-  add_foreign_key "subjects", "sections"
 end
