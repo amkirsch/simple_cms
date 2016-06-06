@@ -1,11 +1,11 @@
 <%= link_to("<< Back to List", {action: 'index'}, class: 'back-to-link') %>
 
-<div class="subjects edit">
-  <h2>Update Subject</h2>
+<div class="pages new">
+  <h2>Create Page</h2>
 
-  <%= form_for(:subject, url: {action: 'update', id: @subject.id}) do |f| %>
+  <%= form_for(:page, url: {action: 'create'}) do |f| %>
 
-    <table summary="Subject form fields">
+    <table summary="page form fields">
       <tr>
         <th>Name</th>
         <td><%= f.text_field(:name) %></td>
@@ -18,10 +18,14 @@
         <th>Visible</th>
         <td><%= f.text_field(:visible) %></td>
       </tr>
+      <tr>
+        <th>Permalink</th>
+        <td><%= f.text_field(:permalink) %></td>
+      </tr>
     </table>
 
     <div class="form-buttons">
-      <%= submit_tag("Edit Subject") %>
+      <%= submit_tag("Create Page") %>
     </div>
 
   <% end %>
