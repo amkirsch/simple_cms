@@ -11,10 +11,10 @@
 
   <table class="listing" summary="page list">
     <tr class="header">
-      <th>&nbsp;</th>
+      <th>ID</th>
       <th>Page</th>
       <th>Visible</th>
-      <th>Pages</th>
+      <th>Sections</th>
       <th>Actions</th>
     </tr>
     <% @pages.each do |page| %>
@@ -22,7 +22,7 @@
       <td><%= page.position %></td>
       <td><%= page.name %></td>
       <td class="center"><%= page.visible ? 'Yes' : 'No' %></td>
-      <td class="center"><%= page.pages.size %></td>
+      <td class="center"><%= page.sections.size %></td>
       <td class="actions">
         <%= link_to("Show", {action: 'show', id: page.id}, :class => 'action show') %>
         <%= link_to("Edit", {action: 'edit', id: page.id}, :class => 'action edit') %>
