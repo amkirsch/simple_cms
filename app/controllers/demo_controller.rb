@@ -17,6 +17,8 @@ class DemoController < ApplicationController
   end
 
   def text_helpers
+  end
 
+  def escape_helpers
   end
 end
