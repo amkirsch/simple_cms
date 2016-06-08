@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
+
+  layout 'admin'
+
   def index
     @pages = Page.sorted
   end
@@ -13,6 +16,7 @@ class PagesController < ApplicationController
 
   def create
     @page = Page.new(page_params)
+
     if @page.save
       flash[:notice] = "Page successfully created."
       redirect_to(action: 'show', id: @page.id)

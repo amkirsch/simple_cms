@@ -1,5 +1,7 @@
 class SectionsController < ApplicationController
 
+  layout 'admin'
+
   def destroy
     section = Section.find(params[:id])
     section.destroy
