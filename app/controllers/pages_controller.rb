@@ -12,6 +12,8 @@ class PagesController < ApplicationController
 
   def new
     @page = Page.new(name: "Default Page")
+    @subjects = Subject.order('position ASC')
+    @page_count = Page.count + 1
   end
 
   def create
@@ -22,12 +24,16 @@ class PagesController < ApplicationController
       redirect_to(action: 'show', id: @page.id)
     else
       flash[:notice] = "Page failed to save!"
+      @subjects = Subject.order('position ASC')
+      @page_count = Page.count + 1
       render('new')
     end
   end
 
   def edit
     @page = Page.find(params[:id])
+    @subjects = Subject.order('position ASC')
+    @page_count = Page.count
   end
 
   def update
@@ -37,7 +43,9 @@ class PagesController < ApplicationController
       redirect_to(action: 'index')
     else
       flash[:notice] = "Page failed to update!"
-      render('update')
+      @subjects = Subject.order('position ASC')
+      @page_count = Page.count
+      render('edit')
     end
   end
 
@@ -55,7 +63,7 @@ class PagesController < ApplicationController
   private
 
   def page_params
-    params.require(:page).permit(:name, :position, :visible, :permalink)
+    params.require(:page).permit(:subject_id, :name, :position, :visible, :permalink)
   end
 
 end

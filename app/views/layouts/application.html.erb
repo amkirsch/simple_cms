@@ -2,11 +2,14 @@
 <html>
   <head>
     <title>SimpleCms</title>
+    <%= javascript_include_tag('public.js') %>
+    <%= stylesheet_link_tag("application", media: "all") %>
   </head>
   <body>
 
     <!-- before yield -->
     <%= yield %>
     <!-- after yield -->
+
   </body>
 </html>

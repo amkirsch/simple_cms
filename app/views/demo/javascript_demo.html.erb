@@ -1,0 +1,9 @@
+<script> src="/assets/javascripts/application.js" type="text/javascript"></script>
+
+<%= javascript_include_tag('public'); %>
+
+<%= javascript_tag("alert('Are you sure?');") %>
+
+<%= javascript_tag do %>
+  alert('Are you sure?');
+<% end %>

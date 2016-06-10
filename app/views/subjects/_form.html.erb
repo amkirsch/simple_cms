@@ -1,15 +1,32 @@
 
 <table summary="Subject form fields">
   <tr>
-    <th>Name</th>
+    <th><%= f.label(:name, "Name") %></th>
     <td><%= f.text_field(:name) %></td>
   </tr>
   <tr>
-    <th>Position</th>
-    <td><%= f.text_field(:position) %></td>
+    <th><%= f.label(:position) %></th>
+    <td><%= f.select(:position, 1..@subject_count) %></td>
   </tr>
   <tr>
-    <th>Visible</th>
-    <td><%= f.text_field(:visible) %></td>
+    <th><%= f.label(:visible) %></th>
+    <td><%= f.check_box(:visible) %></td>
   </tr>
 </table>
+
+<!-- Examples of form helper
+<%=
+#form_for(:subject, url: {action: "create"}, html: {multipart: true}) do
+#  f.text_field(:name, size: 40, maxlength: 40)
+#  f.password_field(:password, size: 40, maxlength: 40)
+#  f.text_area(:description, size: "40x5") # or :cols, :rows
+#  f.hidden_field(:token)
+#  f.radio_button(:content_type, "text")
+#  f.radio_button(:content_type, "HTML")
+#  f.label(:visible)
+#  f.check_box(:visible)
+#  f.file_field(:logo) # requires :multipart => true
+#  submit_tag("Submit")
+#end
+%>
+-->

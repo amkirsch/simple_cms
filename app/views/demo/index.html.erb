@@ -7,3 +7,11 @@
 
 
 <%= link_to('Hello With Params', {controller: 'demo', action: 'hello', page: 5, id: 20}) %>
+
+</br>
+
+<% name = "Duda" %>
+<%= link_to('Roar', '#', onclick: "jsRoar('#{j(name)}'); return true;") %>
+
+<% name = "Sorry!'); alert('Gotcha!" %>
+<%= javascript_tag("jsRoar('#{j(name)}');") %>
