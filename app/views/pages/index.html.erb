@@ -1,4 +1,7 @@
 <div class="pages index">
+
+<%= link_to("<< Back to Menu", {controller: 'access', action: 'index'}, class: 'back-to-link') %>
+
   <h2>Pages</h2>
 
   <%= link_to("Add New Page", {action: 'new'}, :class => 'action new') %>

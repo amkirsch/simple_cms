@@ -2,6 +2,8 @@ class SectionsController < ApplicationController
 
   layout 'admin'
 
+  before_action :confirm_logged_in
+
   def destroy
     section = Section.find(params[:id])
     section.destroy
@@ -15,6 +17,8 @@ class SectionsController < ApplicationController
 
   def edit
     @section = Section.find(params[:id])
+    @pages = Page.order('position ASC')
+    @section_count = Section.count + 1
   end
 
   def update
@@ -24,6 +28,8 @@ class SectionsController < ApplicationController
       redirect_to(action: 'show', id: @section.id)
     else
       flash[:notice] = "Section was not updated."
+      @pages = Page.order('position ASC')
+      @section_count = Section.count + 1
       render('edit')
     end
   end
@@ -35,12 +41,16 @@ class SectionsController < ApplicationController
       redirect_to(action: 'show', id: @section.id)
     else
       flash[:notice] = "Section was not created."
+      @section_count = Section.count + 1
+      @pages = Page.order('position ASC')
       render('new')
     end
   end
 
   def new
     @section = Section.new(name: "Default Section")
+    @pages = Page.order('position ASC')
+    @section_count = Section.count + 1
   end
 
   def index

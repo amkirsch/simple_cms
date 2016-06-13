@@ -1,0 +1,41 @@
+<%= error_messages_for(@admin_user) %>
+
+<table summary="Admin User form fields">
+  <tr>
+    <th><%= f.label(:first_name, "First Name") %></th>
+    <td><%= f.text_field(:first_name) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:last_name, "Last Name") %></th>
+    <td><%= f.text_field(:last_name) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:email, "Email") %></th>
+    <td><%= f.text_field(:email) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:username, "Username") %></th>
+    <td><%= f.text_field(:username) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:password, "Password") %></th>
+    <td><%= f.password_field(:password) %></td>
+  </tr>
+</table>
+
+<!-- Examples of form helper
+<%=
+#form_for(:user, url: {action: "create"}, html: {multipart: true}) do
+#  f.text_field(:name, size: 40, maxlength: 40)
+#  f.password_field(:password, size: 40, maxlength: 40)
+#  f.text_area(:description, size: "40x5") # or :cols, :rows
+#  f.hidden_field(:token)
+#  f.radio_button(:content_type, "text")
+#  f.radio_button(:content_type, "HTML")
+#  f.label(:visible)
+#  f.check_box(:visible)
+#  f.file_field(:logo) # requires :multipart => true
+#  submit_tag("Submit")
+#end
+%>
+-->

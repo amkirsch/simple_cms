@@ -1,5 +1,8 @@
 
 <div class="sections index">
+
+<%= link_to("<< Back to Menu", {controller: 'access', action: 'index'}, class: 'back-to-link') %>
+
   <h2>Sections</h2>
 
   <%= link_to("Add New Section", {action: 'new'}, :class => 'action new') %>
@@ -7,7 +10,7 @@
   <table class="listing" summary="section list">
     <tr class="header">
       <th></th>
-      <th>Page ID</th>
+      <th>Page</th>
       <th>Section</th>
       <th>Visible</th>
       <th>Content</th>
@@ -16,7 +19,7 @@
     <% @sections.each do |section| %>
     <tr>
       <td><%= section.position %></td>
-      <td><%= section.page_id%></td>
+      <td><%= section.page.name if section.page%></td>
       <td><%= section.name %></td>
       <td class="center"><%= status_tag(section.visible) %></td>
       <td><%= section.content %></td>
