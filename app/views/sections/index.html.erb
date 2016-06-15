@@ -1,11 +1,11 @@
 
 <div class="sections index">
 
-<%= link_to("<< Back to Menu", {controller: 'access', action: 'index'}, class: 'back-to-link') %>
+<%= link_to("<< Back to Pages", {controller: 'pages', action: 'index', subject_id: @page.subject_id}, class: 'back-to-link') %>
 
   <h2>Sections</h2>
 
-  <%= link_to("Add New Section", {action: 'new'}, :class => 'action new') %>
+  <%= link_to("Add New Section", {action: 'new', page_id: @page.id}, :class => 'action new') %>
 
   <table class="listing" summary="section list">
     <tr class="header">
@@ -24,9 +24,9 @@
       <td class="center"><%= status_tag(section.visible) %></td>
       <td><%= section.content %></td>
       <td class="actions">
-        <%= link_to("Show", {action: 'show', id: section.id}, :class => 'action show') %>
-        <%= link_to("Edit", {action: 'edit', id: section.id}, :class => 'action edit') %>
-        <%= link_to("Delete", {action: 'delete', id: section.id}, :class => 'action delete') %>
+        <%= link_to("Show", {action: 'show', id: section.id, page_id: @page.id}, :class => 'action show') %>
+        <%= link_to("Edit", {action: 'edit', id: section.id, page_id: @page.id}, :class => 'action edit') %>
+        <%= link_to("Delete", {action: 'delete', id: section.id, page_id: @page.id}, :class => 'action delete') %>
       </td>
     </tr>
     <% end %>

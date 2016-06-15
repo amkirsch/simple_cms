@@ -6,6 +6,8 @@ class Subject < ActiveRecord::Base
   # has_many :pages, :dependent => :destroy
   has_many :pages
 
+  acts_as_list  # TODO I need more study into this Gem!!
+
   # helper scopes
   scope :visible, lambda { where(visible: true) }
   scope :invisible, lambda { where(visible: false) }
