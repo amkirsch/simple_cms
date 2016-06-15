@@ -24,10 +24,11 @@
       <td class="center"><%= status_tag(subject.visible) %></td>
       <td class="center"><%= subject.pages.size %></td>
       <td class="actions">
-        <%= link_to("View Pages", {controller: 'pages', action: 'index', subject_id: subject.id}, :class => 'action show') %>
-        <%= link_to("Show", {action: 'show', id: subject.id}, :class => 'action show') %>
-        <%= link_to("Edit", {action: 'edit', id: subject.id}, :class => 'action edit') %>
-        <%= link_to("Delete", {action: 'delete', id: subject.id}, :class => 'action delete') %>
+        <!-- RESTful API Style, I'll leave sections alone as an Example -->
+        <%= link_to "View Pages", pages_path(subject_id: subject.id), :class => 'action show' %>
+        <%= link_to "Show", subject_path(subject.id), class: "action show" %>
+        <%= link_to "Edit", edit_subject_path(subject.id), class: "action edit" %>
+        <%= link_to "Delete", [:delete, subject], class: "action delete" %>
       </td>
     </tr>
     <% end %>

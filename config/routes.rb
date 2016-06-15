@@ -10,7 +10,6 @@ Rails.application.routes.draw do
 
   get 'admin', to: 'access#index'
 
-  match ':controller(/:action(/:id))', via: [:get, :post]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -20,6 +19,15 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
+  resources :subjects do
+    get 'delete', on: :member
+  end
+  resources :pages
+  resources :sections
+  resources :admin_user
+
+
+  match ':controller(/:action(/:id))', via: [:get, :post]
   # Example resource route with options:
   #   resources :products do
   #     member do

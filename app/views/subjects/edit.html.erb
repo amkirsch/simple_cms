@@ -1,9 +1,9 @@
-<%= link_to("<< Back to List", {action: 'index'}, class: 'back-to-link') %>
+<%= link_to("<< Back to List", subjects_path, class: 'back-to-link') %>
 
 <div class="subjects edit">
   <h2>Update Subject</h2>
 
-  <%= form_for(:subject, url: {action: 'update', id: @subject.id}) do |f| %>
+  <%= form_for(@subject) do |f| %>
 
     <%= render(:partial => "form", locals: {f: f}) %>
 
@@ -12,4 +12,11 @@
     </div>
 
   <% end %>
+
 </div>
+
+  <!-- Same as above, essentially  <%= form_for :subject, url: subject_path(@subject.id), html: { method: :patch } do |f| %>
+
+    <%= render(:partial => "form", locals: {f: f}) %>
+
+    <% end %>

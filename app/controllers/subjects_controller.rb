@@ -2,8 +2,9 @@ class SubjectsController < ApplicationController
 
   layout "admin"
   before_action :confirm_logged_in
-  
+
   def index
+    logger.info("Loading Subjects...")
     @subjects = Subject.sorted
   end
 

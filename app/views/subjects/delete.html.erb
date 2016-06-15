@@ -1,9 +1,9 @@
-<%= link_to("<< Back to List", {action: 'index'}, class: 'back-link') %>
+<%= link_to("<< Back to List", subjects_path, class: 'back-link') %>
 
 <div class="subjects delete">
   <h2>Delete Subjects</h2>
 
-  <%= form_for(:subject, url: {action: 'destroy', id: @subject.id}) do |f| %>
+  <%= form_for(@subject, html: { method: :delete } ) do |f| %>
 
     <p>Are you sure you want to delete this subject?</p>
 
